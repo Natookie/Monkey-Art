@@ -56,6 +56,7 @@
     max-height: 100%;
     flex-shrink: 0;
     min-width: 0;
+    outline: none;
     scrollbar-width: thin;
     scrollbar-color: var(--bg-tertiary) transparent;
 }
@@ -96,6 +97,7 @@
     overflow-x: hidden;
     max-height: 100%;
     min-height: 0;
+    outline: none;
 }
 
 .right-panel::-webkit-scrollbar {
@@ -127,13 +129,7 @@
 #shadeCard .tool-content,
 #blendCard .tool-content,
 #savedPalettesCard .tool-content {
-    max-height: 260px;
     overflow-y: auto;
-}
-
-.mode-panel {
-    width: 100%;
-    transition: opacity var(--transition-normal);
 }
 
 .mode-panel.hidden {
@@ -190,10 +186,36 @@
     }
 }
 
+@media (min-width: 768px) and (max-width: 899px) {
+    .left-panel {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+    }
+
+    .color-box-section {
+        grid-column: 1 / -1;
+    }
+}
+
 @media (min-width: 600px) and (max-width: 899px) {
     .left-panel {
         gap: 10px;
         padding: 10px;
+    }
+}
+
+@media (max-width: 768px) {
+    button,
+    [role="button"],
+    .tool-card {
+        min-height: 44px;
+    }
+
+    input,
+    select,
+    textarea {
+        font-size: 16px;
     }
 }
 
@@ -214,7 +236,7 @@
 
     .tool-content {
         max-height: auto !important;
-        overflow: visible !important;
+        overflow: hidden !important;
     }
 
     .explore-placeholder {
@@ -255,23 +277,6 @@
     }
 }
 
-.left-panel,
-.right-panel {
-    outline: none;
-    border: none;
-    box-shadow: none;
-}
-
-.left-panel:focus,
-.right-panel:focus {
-    outline: none;
-}
-
-.left-panel::focus-visible,
-.right-panel::focus-visible {
-    outline: none;
-}
-
 .left-panel button:focus-visible,
 .right-panel button:focus-visible,
 .left-panel input:focus-visible,
@@ -308,6 +313,15 @@
 
     .tool-card:hover {
         transform: none;
+    }
+}
+
+@supports (padding: max(0px)) {
+    .workspace-container {
+        padding-left: max(12px, env(safe-area-inset-left));
+        padding-right: max(12px, env(safe-area-inset-right));
+        padding-top: max(12px, env(safe-area-inset-top));
+        padding-bottom: max(12px, env(safe-area-inset-bottom));
     }
 }
 

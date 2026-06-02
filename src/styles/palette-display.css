@@ -5,6 +5,7 @@
     padding: 6px;
     background: var(--bg-secondary, rgba(0, 0, 0, 0.05));
     border-radius: 8px;
+    min-height: 48px;
     align-items: center;
     justify-content: space-between;
 }
@@ -234,10 +235,11 @@
 
 #paletteDisplay {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(65px, 1fr));
+    grid-template-columns: repeat(5, 1fr); 
     gap: 6px;
     padding: 4px;
     min-height: auto;
+    align-items: start;
 }
 
 .color-box-display {
@@ -253,6 +255,7 @@
     border: 1.5px solid var(--border-color, #e0e0e0);
     cursor: pointer;
     transition: all 0.1s ease;
+    flex-shrink: 0;
 }
 
 .color-box-swatch:hover {

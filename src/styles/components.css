@@ -332,8 +332,9 @@ input[type='radio']:focus-visible {
 .tool-card {
     display: flex;
     flex-direction: column;
+    height: 100%;
     gap: var(--spacing-md);
-    background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+    background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%) !important;
     border: 1px solid rgba(255, 215, 0, 0.1);
     border-radius: var(--border-radius-lg);
     padding: var(--spacing-lg);

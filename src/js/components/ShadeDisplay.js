@@ -176,7 +176,13 @@ const ShadeDisplay = (() => {
         toolbar.appendChild(skyWrapper);
         toolbar.appendChild(skyPickerWrapper);
 
-        container.insertBefore(toolbar, container.firstChild);
+        const toolCard = container.closest('.tool-card');
+        if (toolCard) {
+            toolCard.insertBefore(toolbar, container);
+        } else {
+            container.parentNode.insertBefore(toolbar, container);
+        }
+
         toolbarCreated = true;
     };
 

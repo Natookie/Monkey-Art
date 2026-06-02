@@ -58,17 +58,19 @@ const ColorInputGroup = (() => {
         if (!gradient) return;
 
         gradient.style.background = `
-        linear-gradient(to right, 
-            hsl(0, 0%, 50%), 
-            hsl(${hue}, 100%, 50%)
-        ),
-        linear-gradient(to bottom,
-            rgba(255, 255, 255, 1),
-            rgba(255, 255, 255, 0),
-            rgba(0, 0, 0, 1)
-        )
-    `;
-        gradient.style.backgroundBlendMode = 'overlay';
+            linear-gradient(
+                to top,
+                black,
+                transparent
+            ),
+            linear-gradient(
+                to right,
+                white,
+                hsl(${hue}, 100%, 50%)
+            )
+        `;
+
+        gradient.style.backgroundBlendMode = 'normal';
     };
 
     const updateCursorPosition = (cursor, saturation, lightness) => {
