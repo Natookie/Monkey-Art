@@ -1,0 +1,332 @@
+.workspace-container {
+    display: grid;
+    gap: 12px;
+    height: 100vh;
+    max-height: 100vh;
+    overflow: hidden;
+    padding: 12px;
+    box-sizing: border-box;
+}
+
+@media (min-width: 1600px) {
+    .workspace-container {
+        grid-template-columns: 1fr 2fr;
+        gap: 16px;
+        padding: 16px;
+    }
+}
+
+@media (min-width: 1200px) and (max-width: 1599px) {
+    .workspace-container {
+        grid-template-columns: 1fr 2fr;
+        gap: 12px;
+        padding: 12px;
+    }
+}
+
+@media (min-width: 900px) and (max-width: 1199px) {
+    .workspace-container {
+        grid-template-columns: 280px 1fr;
+        gap: 12px;
+        padding: 12px;
+    }
+}
+
+@media (max-width: 899px) {
+    .workspace-container {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr;
+        gap: 12px;
+        padding: 12px;
+        height: auto;
+        max-height: none;
+        overflow-y: auto;
+    }
+}
+
+.left-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    background-color: var(--bg-secondary);
+    border-radius: var(--border-radius-lg);
+    padding: 12px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    max-height: 100%;
+    flex-shrink: 0;
+    min-width: 0;
+    scrollbar-width: thin;
+    scrollbar-color: var(--bg-tertiary) transparent;
+}
+
+.left-panel::-webkit-scrollbar {
+    width: 8px;
+}
+
+.left-panel::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.left-panel::-webkit-scrollbar-thumb {
+    background-color: var(--bg-tertiary);
+    border-radius: 4px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+}
+
+.left-panel::-webkit-scrollbar-thumb:hover {
+    background-color: var(--accent-primary);
+    background-clip: content-box;
+}
+
+.color-box-section {
+    width: 100%;
+    flex-shrink: 0;
+}
+
+.color-box {
+    will-change: background-color;
+}
+
+.right-panel {
+    background-color: transparent;
+    padding: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    max-height: 100%;
+    min-height: 0;
+}
+
+.right-panel::-webkit-scrollbar {
+    width: 8px;
+}
+
+.right-panel::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.right-panel::-webkit-scrollbar-thumb {
+    background-color: var(--bg-tertiary);
+    border-radius: 4px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+}
+
+.right-panel::-webkit-scrollbar-thumb:hover {
+    background-color: var(--accent-primary);
+    background-clip: content-box;
+}
+
+.right-panel .mode-panel {
+    width: 100%;
+    height: 100%;
+}
+
+#paletteCard .tool-content,
+#shadeCard .tool-content,
+#blendCard .tool-content,
+#savedPalettesCard .tool-content {
+    max-height: 260px;
+    overflow-y: auto;
+}
+
+.mode-panel {
+    width: 100%;
+    transition: opacity var(--transition-normal);
+}
+
+.mode-panel.hidden {
+    display: none;
+}
+
+.explore-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: var(--spacing-2xl);
+    background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
+    border-radius: var(--border-radius-lg);
+    border: 2px dashed var(--accent-primary);
+    margin-top: var(--spacing-lg);
+    min-height: 400px;
+}
+
+.explore-placeholder i {
+    font-size: 64px;
+    color: var(--accent-primary);
+    margin-bottom: var(--spacing-lg);
+}
+
+.explore-placeholder h3 {
+    color: var(--accent-primary);
+    margin-bottom: var(--spacing-md);
+    font-size: 1.5rem;
+}
+
+.explore-placeholder p {
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-sm);
+}
+
+.explore-placeholder .explore-hint {
+    font-size: var(--font-size-sm);
+    color: var(--text-muted);
+}
+
+@media (min-width: 900px) and (max-width: 1199px) {
+    .tool-card {
+        padding: 10px;
+    }
+
+    .tool-title {
+        font-size: 1rem;
+    }
+
+    .tool-icon {
+        font-size: 1.25rem;
+    }
+}
+
+@media (min-width: 600px) and (max-width: 899px) {
+    .left-panel {
+        gap: 10px;
+        padding: 10px;
+    }
+}
+
+@media (max-width: 599px) {
+    .workspace-container {
+        gap: 10px;
+        padding: 10px;
+    }
+
+    .left-panel {
+        gap: 8px;
+        padding: 8px;
+    }
+
+    .tool-card {
+        padding: 10px;
+    }
+
+    .tool-content {
+        max-height: auto !important;
+        overflow: visible !important;
+    }
+
+    .explore-placeholder {
+        min-height: 300px;
+        padding: var(--spacing-xl);
+    }
+
+    .explore-placeholder i {
+        font-size: 48px;
+    }
+
+    .explore-placeholder h3 {
+        font-size: 1.25rem;
+    }
+}
+
+@media (max-width: 399px) {
+    .workspace-container {
+        gap: 8px;
+        padding: 8px;
+    }
+
+    .left-panel {
+        gap: 8px;
+        padding: 8px;
+    }
+
+    .tool-card {
+        padding: 8px;
+    }
+
+    .tool-title {
+        font-size: 0.9rem;
+    }
+
+    .tool-icon {
+        font-size: 1rem;
+    }
+}
+
+.left-panel,
+.right-panel {
+    outline: none;
+    border: none;
+    box-shadow: none;
+}
+
+.left-panel:focus,
+.right-panel:focus {
+    outline: none;
+}
+
+.left-panel::focus-visible,
+.right-panel::focus-visible {
+    outline: none;
+}
+
+.left-panel button:focus-visible,
+.right-panel button:focus-visible,
+.left-panel input:focus-visible,
+.right-panel input:focus-visible,
+.left-panel [tabindex]:focus-visible,
+.right-panel [tabindex]:focus-visible {
+    outline: 2px solid var(--accent-primary);
+    outline-offset: 2px;
+}
+
+*:focus-visible {
+    outline-offset: 2px;
+}
+
+@media (prefers-contrast: more) {
+    .left-panel,
+    .right-panel {
+        border: 1px solid var(--accent-primary);
+    }
+
+    .tool-card {
+        border-width: 2px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .tool-card:hover {
+        transform: none;
+    }
+}
+
+.hidden {
+    display: none !important;
+}
+
+.visible {
+    display: block !important;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+.h-100 {
+    height: 100%;
+}

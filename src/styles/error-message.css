@@ -1,0 +1,109 @@
+.error-message-container {
+    display: none;
+    margin-bottom: var(--spacing-lg);
+    padding: var(--spacing-md) var(--spacing-lg);
+    background-color: var(--error-light);
+    border-left: 4px solid var(--error);
+    border-radius: var(--radius-md);
+    animation: slideDown 0.2s ease;
+}
+
+.error-message-container[role='alert'] {
+    position: relative;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.error-message-wrapper {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-md);
+    flex: 1;
+}
+
+.error-icon {
+    font-size: 1.25rem;
+    color: var(--error);
+    font-weight: bold;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.error-message-text {
+    color: var(--error);
+    font-size: 0.95rem;
+    line-height: 1.4;
+    margin: 0;
+    flex: 1;
+}
+
+.error-dismiss-btn {
+    background: none;
+    border: none;
+    padding: var(--spacing-sm);
+    margin: -4px -4px 0 0;
+    cursor: pointer;
+    color: var(--error);
+    font-size: 1.25rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 40px;
+    min-height: 40px;
+    border-radius: var(--radius-sm);
+    transition: background-color 0.2s ease;
+    flex-shrink: 0;
+}
+
+.error-dismiss-btn:hover {
+    background-color: rgba(231, 76, 60, 0.1);
+}
+
+.error-dismiss-btn:focus-visible {
+    outline: 2px solid var(--error);
+    outline-offset: 2px;
+}
+
+.error-inline {
+    color: var(--error);
+    font-size: 0.85rem;
+    margin-top: var(--spacing-xs);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+}
+
+.error-inline::before {
+    content: '✕';
+    font-weight: bold;
+}
+
+@media (max-width: 480px) {
+    .error-message-container {
+        padding: var(--spacing-md);
+        margin-left: -1rem;
+        margin-right: -1rem;
+        border-radius: 0;
+    }
+
+    .error-message-wrapper {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .error-message-container {
+        animation: none;
+    }
+}

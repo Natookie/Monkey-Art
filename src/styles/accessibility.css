@@ -1,0 +1,258 @@
+html {
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+*,
+*::before,
+*::after {
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+input[type='text'],
+input[type='email'],
+input[type='password'],
+textarea,
+.allow-select {
+    user-select: text;
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+}
+
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--brown-dark);
+    color: white;
+    padding: var(--spacing-md) var(--spacing-lg);
+    text-decoration: none;
+    z-index: 100;
+    border-radius: var(--radius-md);
+}
+
+.skip-link:focus {
+    top: 0;
+}
+
+h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+h2 {
+    font-size: 1.875rem;
+    font-weight: 700;
+    margin-top: var(--spacing-2xl);
+}
+
+h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-top: var(--spacing-xl);
+}
+
+h4 {
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+h5 {
+    font-size: 1.125rem;
+    font-weight: 600;
+}
+
+h6 {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+:focus-visible {
+    outline: 2px solid var(--primary-yellow);
+    outline-offset: 2px;
+}
+
+:focus:not(:focus-visible) {
+    outline: none;
+}
+
+button:focus-visible,
+[role='button']:focus-visible {
+    outline: 2px solid var(--brown-dark);
+    outline-offset: 2px;
+    box-shadow: inset 0 0 0 2px var(--bg-white);
+}
+
+button:hover,
+[role='button']:hover {
+    opacity: 0.95;
+}
+
+button:active,
+[role='button']:active {
+    opacity: 0.85;
+}
+
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+    outline: none;
+    border-color: var(--primary-yellow);
+    box-shadow: 0 0 0 3px rgba(240, 173, 78, 0.2);
+}
+
+.icon-with-text {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.status-success {
+    color: var(--success);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.status-success::before {
+    content: '✓';
+    font-weight: bold;
+    margin-right: var(--spacing-xs);
+}
+
+.status-error {
+    color: var(--error);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.status-error::before {
+    content: '✕';
+    font-weight: bold;
+    margin-right: var(--spacing-xs);
+}
+
+.status-warning {
+    color: var(--warning);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.status-warning::before {
+    content: '⚠';
+    margin-right: var(--spacing-xs);
+}
+
+label {
+    display: block;
+    margin-bottom: var(--spacing-sm);
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+label[for] {
+    cursor: pointer;
+}
+
+input[type='checkbox'] + label,
+input[type='radio'] + label {
+    display: inline;
+    margin-left: var(--spacing-sm);
+    font-weight: normal;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[role='button']:focus-visible {
+    outline: 2px solid var(--brown-dark);
+    outline-offset: 2px;
+}
+
+body {
+    tab-size: 4;
+}
+
+[role='alert'] {
+    padding: var(--spacing-md);
+    background-color: var(--error-light);
+    border-left: 4px solid var(--error);
+    border-radius: var(--radius-md);
+    color: var(--error);
+}
+
+[role='status'] {
+    padding: var(--spacing-md);
+    background-color: var(--success-light);
+    border-left: 4px solid var(--success);
+    border-radius: var(--radius-md);
+    color: var(--success);
+}
+
+[aria-live] {
+    position: relative;
+}
+
+button,
+a[role='button'],
+input[type='button'],
+input[type='submit'],
+input[type='reset'] {
+    min-width: 44px;
+    min-height: 44px;
+    padding: var(--spacing-md) var(--spacing-lg);
+}
+
+@media (prefers-contrast: more) {
+    button,
+    [role='button'] {
+        border-width: 2px;
+    }
+
+    section {
+        border-width: 2px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #1a1a1a;
+        color: #e8e8e8;
+    }
+
+    section {
+        background-color: #2a2a2a;
+    }
+
+    .input-field {
+        background-color: #2a2a2a;
+        color: #e8e8e8;
+        border-color: #444;
+    }
+}

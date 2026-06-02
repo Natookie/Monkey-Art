@@ -1,0 +1,204 @@
+.color-class-library {
+    width: 100%;
+}
+
+.color-categories-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg, 20px);
+}
+
+.color-category {
+    background: var(--bg-tertiary, #2d2d2d);
+    border-radius: var(--radius-lg, 12px);
+    overflow: hidden;
+    transition: all 0.2s ease;
+}
+
+.color-category.collapsed .color-topics-container {
+    display: none;
+}
+
+.color-category-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-md, 14px) var(--spacing-lg, 20px);
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.color-category-header:hover {
+    background: var(--bg-secondary, #3a3a3a);
+}
+
+.category-header-left {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm, 12px);
+}
+
+.category-icon {
+    font-size: 24px;
+}
+
+.color-category-header h3 {
+    font-size: 1.1rem;
+    font-weight: var(--font-weight-bold, 700);
+    color: var(--accent-primary, #ffd700);
+    margin: 0;
+}
+
+.category-toggle {
+    color: var(--text-muted, #808080);
+    transition: transform 0.2s ease;
+}
+
+.color-category.collapsed .category-toggle i {
+    transform: rotate(-90deg);
+}
+
+.color-topics-container {
+    padding: var(--spacing-lg, 20px) var(--spacing-lg, 20px) var(--spacing-lg, 20px)
+        var(--spacing-lg, 20px);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md, 16px);
+}
+
+.color-topic-card {
+    background: var(--bg-secondary, #252525);
+    border-radius: var(--radius-md, 10px);
+    padding: var(--spacing-md, 16px);
+    transition: all 0.2s ease;
+}
+
+.color-topic-card:hover {
+    background: var(--bg-secondary, #2a2a2a);
+}
+
+.color-topic-title {
+    font-size: 1rem;
+    font-weight: var(--font-weight-bold, 700);
+    color: var(--text-primary, #ffffff);
+    margin-bottom: var(--spacing-sm, 8px);
+}
+
+.color-topic-description {
+    font-size: 0.85rem;
+    color: var(--text-secondary, #e0e0e0);
+    margin-bottom: var(--spacing-md, 12px);
+    line-height: 1.4;
+}
+
+.color-topic-preview {
+    display: flex;
+    gap: 6px;
+    margin-bottom: var(--spacing-md, 12px);
+    flex-wrap: wrap;
+}
+
+.topic-swatch {
+    flex: 1;
+    min-width: 35px;
+    height: 45px;
+    border-radius: var(--radius-sm, 6px);
+    cursor: pointer;
+    transition: transform 0.1s ease;
+}
+
+.topic-swatch:hover {
+    transform: scale(1.05);
+}
+
+.color-topic-tips {
+    padding: var(--spacing-sm, 12px);
+    margin-bottom: var(--spacing-sm, 10px);
+}
+
+.tips-title {
+    font-size: 0.75rem;
+    font-weight: var(--font-weight-bold, 700);
+    color: var(--accent-primary, #ffd700);
+    margin-bottom: var(--spacing-xs, 8px);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.color-topic-tips ul {
+    margin: 0;
+    padding-left: var(--spacing-lg, 20px);
+}
+
+.color-topic-tips li {
+    font-size: 0.8rem;
+    margin-bottom: 6px;
+    color: var(--text-muted, #b0b0b0);
+    line-height: 1.4;
+}
+
+.color-topic-tips li:last-child {
+    margin-bottom: 0;
+}
+
+.color-topic-example {
+    padding: var(--spacing-sm, 10px);
+    font-size: 0.8rem;
+    color: var(--text-secondary, #e0e0e0);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm, 8px);
+}
+
+.color-topic-example i {
+    color: var(--accent-primary, #ffd700);
+}
+
+@media (max-width: 768px) {
+    .color-category-header {
+        padding: var(--spacing-sm, 12px) var(--spacing-md, 16px);
+    }
+
+    .category-icon {
+        font-size: 20px;
+    }
+
+    .color-category-header h3 {
+        font-size: 1rem;
+    }
+
+    .color-topics-container {
+        padding: var(--spacing-md, 16px);
+        gap: var(--spacing-sm, 12px);
+    }
+
+    .color-topic-card {
+        padding: var(--spacing-sm, 12px);
+    }
+
+    .color-topic-title {
+        font-size: 0.95rem;
+    }
+
+    .topic-swatch {
+        min-width: 30px;
+        height: 40px;
+    }
+}
+
+@media (max-width: 480px) {
+    .topic-swatch {
+        min-width: 25px;
+        height: 35px;
+    }
+
+    .color-topic-tips li {
+        font-size: 0.75rem;
+    }
+
+    .color-topic-example {
+        font-size: 0.7rem;
+        flex-wrap: wrap;
+    }
+}

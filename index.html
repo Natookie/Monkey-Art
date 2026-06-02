@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🙊 MonkeyArt - Color Palette Tool</title>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="src/styles/theme.css">
+    <link rel="stylesheet" href="src/styles/layout.css">
+    <link rel="stylesheet" href="src/styles/components.css">
+    <link rel="stylesheet" href="src/styles/mode-panel.css">
+    <link rel="stylesheet" href="src/styles/bento-grid.css">
+    <link rel="stylesheet" href="src/styles/glassmorphism.css">
+    <link rel="stylesheet" href="src/styles/accessibility.css">
+    <link rel="stylesheet" href="src/styles/color-input.css">
+    <link rel="stylesheet" href="src/styles/color-box-drag.css">
+    <link rel="stylesheet" href="src/styles/error-message.css">
+    <link rel="stylesheet" href="src/styles/palette-display.css">
+    <link rel="stylesheet" href="src/styles/shade-display.css">
+    <link rel="stylesheet" href="src/styles/blend-display.css">
+    <link rel="stylesheet" href="src/styles/explore-display.css">
+    <link rel="stylesheet" href="src/styles/explore-mode.css">
+    <link rel="stylesheet" href="src/styles/toast.css">
+    <link rel="stylesheet" href="src/styles/dialog.css">
+    <link rel="stylesheet" href="src/styles/saved-palettes-list.css">
+    <link rel="stylesheet" href="src/styles/save-palette-btn.css">
+    <link rel="stylesheet" href="src/styles/color-class-library.css">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div id="app" class="workspace-container">
+        <!-- LEFT PANEL -->
+        <aside id="leftPanel" class="left-panel" role="region" aria-label="Color control panel">
+            <!-- Mode Toggle Buttons -->
+            <div id="modeToggle" class="mode-toggle" role="group" aria-label="Workspace mode selector">
+                <button class="mode-btn mode-btn--tools active" data-mode="Tools">
+                    <i class="fas fa-hammer" aria-hidden="true"></i>
+                    <span>&nbsp Tools</span>
+                </button>
+                <button class="mode-btn mode-btn--explore" data-mode="Explore">
+                    <i class="fas fa-book" aria-hidden="true"></i>
+                    <span>&nbsp Explore</span>
+                </button>
+            </div>
+
+            <!-- TOOLS MODE PANEL -->
+            <div id="toolsPanel" class="mode-panel">
+                <!-- Color Input Group -->
+                <div id="colorInputGroup" class="color-input-group">
+                    <input 
+                        id="primaryColorInput" 
+                        type="text" 
+                        class="hex-input" 
+                        placeholder="#FFD700"
+                        aria-label="Primary color hex input"
+                        maxlength="7"
+                        value="#FFD700"
+                    >
+
+                    <!-- Primary HSL Controls  -->
+                    <div id="primaryColorControls" class="color-controls-container">
+                        <!-- 2D Color Picker -->
+                        <div class="color-preview-area">
+                            <div class="color-preview-gradient">
+                                <div class="color-preview-cursor"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- HSL Sliders -->
+                        <div class="hsl-sliders-group">
+                            <div class="hsl-slider-container">
+                                <div class="hsl-slider-label">
+                                    <span>Hue</span>
+                                    <span class="hsl-slider-value" id="primaryHueValue">51°</span>
+                                </div>
+                                <input type="range" id="primaryHueSlider" class="hsl-slider hue" min="0" max="360" value="51" step="1">
+                            </div>
+                            
+                            <div class="hsl-slider-container">
+                                <div class="hsl-slider-label">
+                                    <span>Saturation</span>
+                                    <span class="hsl-slider-value" id="primarySatValue">100%</span>
+                                </div>
+                                <input type="range" id="primarySatSlider" class="hsl-slider saturation" min="0" max="100" value="100" step="1">
+                            </div>
+                            
+                            <div class="hsl-slider-container">
+                                <div class="hsl-slider-label">
+                                    <span>Lightness</span>
+                                    <span class="hsl-slider-value" id="primaryLightValue">50%</span>
+                                </div>
+                                <input type="range" id="primaryLightSlider" class="hsl-slider lightness" min="0" max="100" value="50" step="1">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Error Message Display -->
+                <div id="errorMessage" class="error-message hidden" role="alert" aria-live="polite"></div>
+            </div>
+
+            <!-- EXPLORE MODE PANEL -->
+            <div id="explorePanel" class="mode-panel hidden">
+                <div class="explore-sections-nav">
+                    <h3 class="explore-nav-title">
+                        <i class="fas fa-compass"></i> Sections
+                    </h3>
+                    <ul class="explore-sections-list">
+                        <li>
+                            <a href="#explore-section-random" class="explore-section-link active" data-section="random">
+                                <i class="fas fa-dice-d6"></i>
+                                <span>Library Palette</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#explore-section-saved" class="explore-section-link" data-section="saved">
+                                <i class="fas fa-bookmark"></i>
+                                <span>Saved Palettes</span>
+                            </a>
+                        </li>
+                        <li class="has-sublist">
+                            <a href="#explore-section-classes" class="explore-section-link" data-section="classes">
+                                <i class="fas fa-graduation-cap"></i>
+                                <span>Color Classes</span>
+                                <i class="fas fa-chevron-down sublist-toggle"></i>
+                            </a>
+                            <ul class="explore-sublist">
+                                <li>
+                                    <a href="#category-fundamentals" class="explore-sublink" data-category="fundamentals">
+                                        <i class="fas fa-palette"></i>
+                                        <span>Color Fundamentals</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#category-gameRules" class="explore-sublink" data-category="gameRules">
+                                        <i class="fas fa-gamepad"></i>
+                                        <span>Game Asset Rules</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#category-techniques" class="explore-sublink" data-category="techniques">
+                                        <i class="fas fa-paintbrush"></i>
+                                        <span>Pixel Art Techniques</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#category-harmonies" class="explore-sublink" data-category="harmonies">
+                                        <i class="fas fa-rainbow"></i>
+                                        <span>Color Harmonies</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#category-advanced" class="explore-sublink" data-category="advanced">
+                                        <i class="fas fa-rocket"></i>
+                                        <span>Advanced Concepts</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </aside>
+
+        <!-- RIGHT PANEL -->
+        <main id="rightPanel" class="right-panel" role="main">
+            <!-- TOOLS MODE -->
+            <div id="toolsRightPanel" class="mode-panel">
+                <div class="bento-grid">
+                    <!-- Palette Tool Card -->
+                    <div id="paletteCard" class="tool-card" role="region">
+                        <div class="tool-header">
+                            <i class="fas fa-palette tool-icon" aria-hidden="true"></i>
+                            <h2 class="tool-title">Palette Maker</h2>
+                        </div>
+                        <div id="paletteDisplay" class="tool-content"></div>
+                    </div>
+
+                    <!-- Shade Tool Card -->
+                    <div id="shadeCard" class="tool-card" role="region">
+                        <div class="tool-header">
+                            <i class="fas fa-sliders-h tool-icon" aria-hidden="true"></i>
+                            <h2 class="tool-title">Shades</h2>
+                        </div>
+                        <div id="shadeDisplay" class="tool-content"></div>
+                    </div>
+
+                    <!-- Blend Tool Card -->
+                    <div id="blendCard" class="tool-card" role="region">
+                        <div class="tool-header">
+                            <i class="fas fa-droplet tool-icon" aria-hidden="true"></i>
+                            <h2 class="tool-title">Blend</h2>
+                        </div>
+                        <div id="blendDisplay" class="tool-content"></div>
+                    </div>
+
+                    <!-- Saved Palettes Tool Card -->
+                    <div id="savedPalettesCard" class="tool-card" role="region">
+                        <div class="tool-header">
+                            <i class="fas fa-bookmark tool-icon" aria-hidden="true"></i>
+                            <h2 class="tool-title">Saved</h2>
+                        </div>
+                        <div id="savedPalettesList" class="tool-content"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EXPLORE MODE -->
+            <div id="exploreRightPanel" class="mode-panel hidden">
+                <div class="bento-grid">
+                    <div id="exploreCard" class="tool-card tool-card--full" role="region">
+                        <div class="tool-header">
+                            <i class="fas fa-compass tool-icon" aria-hidden="true"></i>
+                            <h2 class="tool-title">Explore</h2>
+                        </div>
+                        <div id="exploreDisplay" class="tool-content"></div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Storage Warning Banner -->
+        <div id="storageWarning" class="storage-warning hidden" role="alert">
+            <div class="storage-warning-content">
+                <span class="storage-warning-text">Session mode: changes will not be saved after refresh</span>
+                <button class="storage-warning-dismiss" aria-label="Dismiss storage warning">✕</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification Container -->
+    <div id="toastContainer" class="toast-container"></div>
+    
+    <!-- Utilities -->
+    <script src="src/utils/colorConverter.js" defer></script>
+    <script src="src/js/utils/validation.js" defer></script>
+    <script src="src/js/utils/shadeCalculator.js" defer></script>
+    <script src="src/js/utils/ColorBoxFactory.js" defer></script>
+    <script src="src/js/models/ColorSource.js" defer></script>
+    <script src="src/js/models/AppState.js" defer></script>
+    
+    <!-- Services -->
+    <script src="src/js/services/StorageService.js" defer></script>
+    <script src="src/js/services/PaletteService.js" defer></script>
+    <script src="src/js/services/ClipboardService.js" defer></script>
+    <script src="src/js/services/ExploreService.js" defer></script>
+    
+    <!-- Data -->
+    <script src="src/data/paletteLibrary.js" defer></script>
+    <script src="src/data/colorClassLibrary.js" defer></script>
+    
+    <!-- Components -->
+    <script src="src/js/components/HSLSlider.js" defer></script>
+    <script src="src/js/components/ColorInput.js" defer></script>
+    <script src="src/js/components/PaletteDisplay.js" defer></script>
+    <script src="src/js/components/ShadeDisplay.js" defer></script>
+    <script src="src/js/components/BlendDisplay.js" defer></script>
+    <script src="src/js/components/ExploreDisplay.js" defer></script>
+    <script src="src/js/components/SavedPalettesList.js" defer></script>
+    <script src="src/js/components/SavePaletteDialog.js" defer></script>
+    <script src="src/js/components/ErrorMessage.js" defer></script>
+    <script src="src/js/components/Toast.js" defer></script>
+    <script src="src/js/components/ColorBoxDrag.js" defer></script>
+    <script src="src/js/components/ModeToggle.js" defer></script>
+    <script src="src/js/components/ToolCard.js" defer></script>
+    <script src="src/js/components/ColorInputGroup.js" defer></script>
+    <script src="src/js/components/SavePaletteInput.js" defer></script>
+    <script src="src/js/components/ImageUpload.js" defer></script>
+    <script src="src/js/components/SaveToolPalette.js" defer></script>
+    <script src="src/js/components/StorageWarning.js" defer></script>
+
+    <!-- Generator Wrapper Components -->
+    <script src="src/js/components/PaletteGenerator.js" defer></script>
+    <script src="src/js/components/BlendGenerator.js" defer></script>
+    <script src="src/js/components/ExploreGenerator.js" defer></script>
+    
+    <!-- Controllers -->
+    <script src="src/js/controllers/CustomModeController.js" defer></script>
+    <script src="src/js/controllers/ExploreModeController.js" defer></script>
+    <script src="src/js/controllers/PaletteManagementController.js" defer></script>
+    
+    <!-- Main App -->
+    <script src="src/js/app.js" defer></script>
+    <!-- <script src="src/js/diagnostics.js"></script> -->
+</body>
+</html>

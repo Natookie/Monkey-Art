@@ -1,0 +1,30 @@
+.explore-button-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-xl);
+}
+
+.explore-next-btn {
+    min-width: 150px;
+    font-size: 1rem;
+    padding: var(--spacing-md) var(--spacing-xl);
+}
+
+.explore-next-btn:hover {
+    transform: scale(1.05);
+}
+
+.explore-next-btn:focus-visible {
+    transform: scale(1.05);
+}
+
+@media (max-width: 480px) {
+    .explore-button-wrapper {
+        flex-direction: column;
+    }
+
+    .explore-next-btn {
+        width: 100%;
+    }
+}
