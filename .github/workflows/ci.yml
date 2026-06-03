@@ -1,0 +1,35 @@
+name: Monkey Art CI
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    environment: github-pages
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Verify entry point
+        run: test -f index.html
+
+      - name: Verify source directory
+        run: test -d src
+
+      - name: Verify styles
+        run: test -d src/styles
+
+      - name: Verify scripts
+        run: test -d src/js
+
+      - name: Verify data files
+        run: test -d src/data
+
+      - name: Verify data files
+        run: test -d src/utils
+
+      - name: Validation completed
+        run: echo "Monkey Art validation successful"
