@@ -2,6 +2,7 @@ class Toast {
     static defaultDuration = 1500;
     static container = null;
     static toasts = [];
+    static maxToasts = 5;
 
     static init() {
         if (Toast.container) return;
@@ -22,7 +23,24 @@ class Toast {
             Toast.init();
         }
 
-        const toastId = `toast-${Date.now()}-${Math.random()}`;
+        if (Toast.toasts.length >= Toast.maxToasts) {
+            const oldestToast = Toast.toasts.shift();
+            if (oldestToast) {
+                if (oldestToast.timeout) {
+                    clearTimeout(oldestToast.timeout);
+                }
+                if (oldestToast.element && oldestToast.element.parentNode) {
+                    oldestToast.element.classList.remove('toast-show');
+                    setTimeout(() => {
+                        if (oldestToast.element && oldestToast.element.parentNode) {
+                            oldestToast.element.parentNode.removeChild(oldestToast.element);
+                        }
+                    }, 300);
+                }
+            }
+        }
+
+        const toastId = `toast-${Date.now()}-${Math.random().toString(36).substr(2, 6)}`;
         const type = options.type || 'success';
         const dismissable = options.dismissable !== false;
 
@@ -67,26 +85,28 @@ class Toast {
 
         toast.appendChild(content);
 
+        Toast.container.appendChild(toast);
+
         setTimeout(() => {
             toast.classList.add('toast-show');
         }, 10);
 
-        Toast.container.appendChild(toast);
+        let timeoutId = null;
+        
+        if (duration > 0) {
+            timeoutId = setTimeout(() => {
+                Toast.dismiss(toastId);
+            }, duration);
+        }
 
         const toastInstance = {
             id: toastId,
             element: toast,
+            timeout: timeoutId,
             dismiss: () => Toast.dismiss(toastId),
-            timeout: null,
         };
 
         Toast.toasts.push(toastInstance);
-
-        if (duration > 0) {
-            toastInstance.timeout = setTimeout(() => {
-                Toast.dismiss(toastId);
-            }, duration);
-        }
 
         return toastInstance;
     }
@@ -99,20 +119,25 @@ class Toast {
 
         if (toastInstance.timeout) {
             clearTimeout(toastInstance.timeout);
+            toastInstance.timeout = null;
         }
 
-        toastInstance.element.classList.remove('toast-show');
-
-        setTimeout(() => {
-            if (toastInstance.element.parentNode) {
-                toastInstance.element.parentNode.removeChild(toastInstance.element);
-            }
+        if (toastInstance.element) {
+            toastInstance.element.classList.remove('toast-show');
+            
+            setTimeout(() => {
+                if (toastInstance.element && toastInstance.element.parentNode) {
+                    toastInstance.element.parentNode.removeChild(toastInstance.element);
+                }
+                Toast.toasts.splice(toastIndex, 1);
+            }, 300);
+        } else {
             Toast.toasts.splice(toastIndex, 1);
-        }, 300);
+        }
     }
 
     static dismissAll() {
-        const toastIds = Toast.toasts.map((t) => t.id);
+        const toastIds = [...Toast.toasts.map((t) => t.id)];
         toastIds.forEach((id) => Toast.dismiss(id));
     }
 
