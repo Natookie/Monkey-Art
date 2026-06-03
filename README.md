@@ -30,7 +30,7 @@ A lightweight, beginner-friendly introduction to color theory to help users unde
 - [Maximillian Kenas](https://www.github.com/Maximillian-520)
 - [Delvin Susilo](https://www.github.com/Delv-dev)
 - [Dave Franklin Lewandi](https://www.github.com/GDavF)
-
+- [Oliver Tong](https://github.com/Oliverr100)
 
 ## 🟢 Feedback
 
