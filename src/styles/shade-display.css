@@ -11,13 +11,51 @@
     display: flex;
     gap: 12px;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
     flex-wrap: wrap;
     padding: 8px 12px;
     background: var(--bg-secondary, rgba(0, 0, 0, 0.05));
     border-radius: 8px;
     min-height: 48px;
     width: 100%;
+}
+
+@media (max-width: 550px) {
+    .shade-toolbar {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+    }
+    
+    .shade-toggle-wrapper,
+    .shade-sky-wrapper {
+        width: 100%;
+    }
+    
+    .shade-toggle-label {
+        justify-content: center;
+        width: 100%;
+        padding: 6px 10px;
+    }
+    
+    .shade-sky-picker-wrapper {
+        justify-content: center;
+        width: 100%;
+    }
+}
+
+@media (max-width: 400px) {
+    .shade-toolbar {
+        padding: 6px 8px;
+    }
+    
+    .shade-toggle-label span {
+        font-size: 10px;
+    }
+    
+    .shade-sky-label {
+        font-size: 9px;
+    }
 }
 
 .shade-toggle-wrapper,
@@ -47,8 +85,8 @@
 }
 
 .shade-toggle-input {
-    width: 14px;
-    height: 14px;
+    width: 16px !important;
+    height: 16px !important;
     cursor: pointer;
     accent-color: var(--accent-primary, #f0ad4e);
     margin: 0;
@@ -59,17 +97,9 @@
     align-items: center;
     gap: 8px;
     padding: 0 8px;
-    background: var(--bg-tertiary, rgba(0, 0, 0, 0.1));
     border-radius: 6px;
     height: 32px;
-}
-
-.shade-sky-label {
-    font-size: 10px;
-    font-weight: 600;
-    color: var(--text-muted, #888);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+    background: transparent !important;
 }
 
 .shade-sky-picker {

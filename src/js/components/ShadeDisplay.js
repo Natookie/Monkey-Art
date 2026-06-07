@@ -91,7 +91,7 @@ const ShadeDisplay = (() => {
         hueShiftCheckbox.checked = true;
 
         const hueShiftSpan = document.createElement('span');
-        hueShiftSpan.textContent = '🌡️ Hue Shift';
+        hueShiftSpan.textContent = 'Hue Shift';
 
         hueShiftLabel.appendChild(hueShiftCheckbox);
         hueShiftLabel.appendChild(hueShiftSpan);
@@ -109,7 +109,7 @@ const ShadeDisplay = (() => {
         skyCheckbox.checked = false;
 
         const skySpan = document.createElement('span');
-        skySpan.textContent = '☀️ Sky Light';
+        skySpan.textContent = 'Sky Light';
 
         skyLabel.appendChild(skyCheckbox);
         skyLabel.appendChild(skySpan);
@@ -120,8 +120,6 @@ const ShadeDisplay = (() => {
         skyPickerWrapper.style.display = 'none';
 
         const skyColorLabel = document.createElement('span');
-        skyColorLabel.className = 'shade-sky-label';
-        skyColorLabel.textContent = 'Sky';
 
         skyColorPicker = document.createElement('input');
         skyColorPicker.type = 'color';
@@ -131,13 +129,10 @@ const ShadeDisplay = (() => {
 
         skyColorPicker.style.backgroundColor = '#87CEEB';
         skyColorPicker.style.borderRadius = '6px';
-        skyColorPicker.style.width = '32px';
-        skyColorPicker.style.height = '32px';
         skyColorPicker.style.cursor = 'pointer';
         skyColorPicker.style.padding = '0';
         skyColorPicker.style.border = '2px solid #87CEEB';
 
-        skyPickerWrapper.appendChild(skyColorLabel);
         skyPickerWrapper.appendChild(skyColorPicker);
 
         hueShiftCheckbox.addEventListener('change', (e) => {
