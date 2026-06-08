@@ -110,33 +110,6 @@ const paletteLibrary = [
     { name: 'Readable Palette', colors: ['#1A1A1A', '#404040', '#6E6E6E', '#A8A8A8', '#E8E8E8'] },
     { name: 'Soft on Eyes', colors: ['#F5F5F0', '#E8DDD0', '#D4C4B9', '#B29F94', '#8B7D6B'] },
     { name: 'Accessible Blues', colors: ['#003366', '#0052A3', '#0066CC', '#3399FF', '#66CCFF'] },
-
-    // --- NEW STRUCTURED ADDITIONS ---
-    
-    {
-      name: 'Spencer Mansion',
-      colors: ['#2A1A12', '#4D3B2E', '#731810', '#8C7A6B', '#111418'],
-      category: 'Real-world references',
-      tags: ['horror', 'survival', 'mansion', 'dark']
-    },
-    {
-      name: 'Radiant Action',
-      colors: ['#FD4556', '#111111', '#ECE8E1', '#53212B', '#FFFBF5'],
-      category: 'Real-world references',
-      tags: ['fps', 'tactical', 'shooter', 'red']
-    },
-    {
-      name: 'Engine Default',
-      colors: ['#3A3A3A', '#222222', '#1E1E1E', '#00A8FF', '#FFFFFF'],
-      category: 'Dark mode friendly',
-      tags: ['development', 'ui', 'editor', 'unity']
-    },
-    {
-      name: 'Peach Fuzz 2024',
-      colors: ['#FFBE98', '#E5A585', '#CC8C72', '#B2735F', '#995A4C'],
-      category: 'Trending colors',
-      tags: ['pantone', 'trend', 'warm', '2024']
-    }
 ];
 
 function getRandomPalette() {
