@@ -29,23 +29,56 @@ const app = {
             });
         }
 
-        const generators = [
-            'PaletteGenerator',
-            'ExploreGenerator',
-            'BlendGenerator',
-            'ShadeDisplay',
-        ];
+        if (typeof PaletteGenerator !== 'undefined' && PaletteGenerator.init) {
+            console.log('Initializing PaletteGenerator...');
+            PaletteGenerator.init();
+        } else {
+            console.warn('PaletteGenerator not loaded');
+        }
 
-        generators.forEach((gen) => {
-            if (typeof window[gen] !== 'undefined' && window[gen].init) {
-                console.log(`Initializing ${gen}...`);
-                window[gen].init();
-            } else if (typeof window[gen] !== 'undefined') {
-                console.log(`${gen} available but has no init method`);
+        if (typeof ExploreDisplay !== 'undefined') {
+            console.log('Initializing ExploreDisplay...');
+            const exploreContainer = document.getElementById('exploreDisplay');
+            if (exploreContainer) {
+                exploreContainer.innerHTML = '';
+                const exploreDisplay = new ExploreDisplay();
+                
+                exploreDisplay.onUse((colors) => {
+                    if (colors && colors.length > 0) {
+                        const primaryInput = document.getElementById('primaryColorInput');
+                        if (primaryInput) {
+                            primaryInput.value = colors[0];
+                            primaryInput.dispatchEvent(new Event('input', { bubbles: true }));
+                        }
+                        const toolsBtn = document.querySelector('.mode-btn[data-mode="Tools"]');
+                        if (toolsBtn && !toolsBtn.classList.contains('active')) {
+                            toolsBtn.click();
+                        }
+                    }
+                });
+                
+                exploreContainer.appendChild(exploreDisplay.getElement());
+                console.log('ExploreDisplay mounted successfully');
             } else {
-                console.warn(`${gen} not loaded - check script order`);
+                console.error('ExploreDisplay container #exploreDisplay not found');
             }
-        });
+        } else {
+            console.warn('ExploreDisplay not loaded');
+        }
+
+        if (typeof BlendGenerator !== 'undefined' && BlendGenerator.init) {
+            console.log('Initializing BlendGenerator...');
+            BlendGenerator.init();
+        } else {
+            console.warn('BlendGenerator not loaded');
+        }
+
+        if (typeof ShadeDisplay !== 'undefined' && ShadeDisplay.init) {
+            console.log('Initializing ShadeDisplay...');
+            ShadeDisplay.init();
+        } else {
+            console.warn('ShadeDisplay not loaded');
+        }
     },
 
     setupModeSwitch() {
@@ -126,7 +159,7 @@ const app = {
     verifyGenerators() {
         const expected = [
             'PaletteGenerator',
-            'ExploreGenerator',
+            'ExploreDisplay',
             'BlendGenerator',
             'ShadeDisplay',
             'BlendDisplay',
