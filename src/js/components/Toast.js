@@ -3,6 +3,7 @@ class Toast {
     static container = null;
     static toasts = [];
     static maxToasts = 5;
+    static isCleaningUp = false;
 
     static init() {
         if (Toast.container) return;
@@ -40,7 +41,7 @@ class Toast {
             }
         }
 
-        const toastId = `toast-${Date.now()}-${Math.random().toString(36).substr(2, 6)}`;
+        const toastId = `toast-${Date.now()}-${Math.random().toString(36).substring(2, 8)}`;
         const type = options.type || 'success';
         const dismissable = options.dismissable !== false;
 
@@ -87,8 +88,9 @@ class Toast {
 
         Toast.container.appendChild(toast);
 
-        setTimeout(() => {
+        let showTimeout = setTimeout(() => {
             toast.classList.add('toast-show');
+            showTimeout = null;
         }, 10);
 
         let timeoutId = null;
@@ -103,6 +105,7 @@ class Toast {
             id: toastId,
             element: toast,
             timeout: timeoutId,
+            showTimeout: showTimeout,
             dismiss: () => Toast.dismiss(toastId),
         };
 
@@ -117,6 +120,11 @@ class Toast {
 
         const toastInstance = Toast.toasts[toastIndex];
 
+        if (toastInstance.showTimeout) {
+            clearTimeout(toastInstance.showTimeout);
+            toastInstance.showTimeout = null;
+        }
+
         if (toastInstance.timeout) {
             clearTimeout(toastInstance.timeout);
             toastInstance.timeout = null;
@@ -125,12 +133,17 @@ class Toast {
         if (toastInstance.element) {
             toastInstance.element.classList.remove('toast-show');
             
-            setTimeout(() => {
+            const removeTimeout = setTimeout(() => {
                 if (toastInstance.element && toastInstance.element.parentNode) {
                     toastInstance.element.parentNode.removeChild(toastInstance.element);
                 }
-                Toast.toasts.splice(toastIndex, 1);
+                const finalIndex = Toast.toasts.findIndex((t) => t.id === toastId);
+                if (finalIndex !== -1) {
+                    Toast.toasts.splice(finalIndex, 1);
+                }
+                clearTimeout(removeTimeout);
             }, 300);
+            toastInstance.removeTimeout = removeTimeout;
         } else {
             Toast.toasts.splice(toastIndex, 1);
         }
